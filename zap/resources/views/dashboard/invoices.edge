@@ -1,0 +1,25 @@
+@layout('invoices.master')
+
+@section('content')
+
+@set('title', 'Invoices')
+@set('description', 'View a list of Invoices created by you')
+<div class="container">
+  <section class="max-w-xl mx-auto py-20">
+    <div class="flex items-center">
+      <div class="card">
+        <h2>Clients Invoices</h2>
+    
+        <!-- Dropdown Menu for Invoices -->
+       <div class="dropdown">
+          <button class="dropbtn">Invoices</button>
+        <div class="dropdown-content">
+          <a href="{{ route('invoices.show') }}">View Invoices</a>
+          <a href="{{ route('invoices.create') }}">Create Invoice</a>
+        </div>
+       </div>
+      </div>
+    </div>
+  </section>
+</div>
+@endsection

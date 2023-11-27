@@ -1,0 +1,45 @@
+<!-- resources/views/invoices/create.edge -->
+
+@extends('invoices.master')
+
+@section('content')
+<div class="container">
+  <div class="edit-profile">
+    <div class="row">
+      <div class="col-md-4  bg-white p-3 mt-5 shadow no-border rounded offset-md-4">
+        <div class="float-right">
+          <a href="/" class="btn btn-outline-dark ">back</a>
+        </div>
+        <br>
+        <h3>Create flashing</h3>
+        <form action="{{ route('store.invoice') }}" method="post" enctype="multipart/form-data">
+          <label for="client_id">Client</label>
+          <select name="client_id" id="client_id">
+            @foreach (clients as client)
+            <option value="{{ client.id }}">{{ client.name }}</option>
+            @endforeach
+          </select>
+          <br>
+          <div class="form-group">
+            <label for="amount">Amount</label>
+            <input type="text" class="form-control" id="amount" name="amount" value="{{old('amount','')}}" placeholder="Enter Amount">
+          </div>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" name="description" value="{{old('description','')}}" placeholder="Enter Description"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="due_date">Due Date</label>
+            <input type="date" class="form-control" id="due_date" name="due_date" value="{{old('due_date','')}}" placeholder="Due Date">
+              {{ elIf('<span class=text-danger>$self</span>', getErrorFor('due_date'), hasErrorFor('due_date')) }}
+          </div>
+          <div class="text-center">
+            <button type="submit" class="button submit-button">Send</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+@endsection
